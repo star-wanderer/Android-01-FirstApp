@@ -3,4 +3,14 @@
     <string name="app_name">нмедиа</string>
     <string name="n_media">НМедиа</string>
     <string name="hello">Привет!</string>
+    <string name="avatar_description">Описание Аватара</string>
+    <string name="description_post_menu">Описание Меню Поста</string>
+    <string name="description_favourite">Описание Изображения Понравившегося</string>
+    <string name="description_favourite_count">Описание Счетчика Понравившегося</string>
+    <string name="description_repost_count">Описание Счетчика Повторной Публикации</string>
+    <string name="description_repost">Описание Изображения Повторной Публикации</string>
+    <string name="description_visit_count">Описание Счетчика Посещений</string>
+    <string name="description_visit_image">Описание Изображения Посещений</string>
+    <string name="description_repost_count">Описание Счетчика Изображения Посещений</string>
+    <string name="description_favourite_count">Описание Изображения Повторной Публикации</string>
 </resources>
