@@ -11,6 +11,4 @@
     <string name="description_repost">Описание Изображения Повторной Публикации</string>
     <string name="description_visit_count">Описание Счетчика Посещений</string>
     <string name="description_visit_image">Описание Изображения Посещений</string>
-    <string name="description_repost_count">Описание Счетчика Изображения Посещений</string>
-    <string name="description_favourite_count">Описание Изображения Повторной Публикации</string>
 </resources>
