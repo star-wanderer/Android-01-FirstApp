@@ -16,6 +16,7 @@
         android:contentDescription="@string/avatar_description"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_netology_48dp"
         tools:srcCompat="@sample/posts.json/data/authorAvatar" />
 
     <TextView
@@ -76,26 +77,35 @@
         app:layout_constraintTop_toBottomOf="@id/barrier"
         tools:text="@sample/posts.json/data/content" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="71dp" />
+
     <ImageView
         android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/description_favourite"
+        android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
     <TextView
-        android:id="@+id/liked"
+        android:id="@+id/likeCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
-        android:layout_marginEnd="@dimen/common_spacing"
         android:contentDescription="@string/description_favourite_count"
         app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toTopOf="@id/like"
         app:layout_constraintBottom_toBottomOf="@id/like"
-        tools:text="@sample/posts.json/data/liked" />
+        tools:text="@sample/posts.json/data/likeCount" />
 
     <ImageView
         android:id="@+id/repost"
@@ -103,12 +113,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
         android:contentDescription="@string/description_repost"
-        app:layout_constraintStart_toEndOf="@id/liked"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/likeCount"
+        app:layout_constraintTop_toTopOf="@id/likeCount"
+        app:layout_constraintBottom_toBottomOf="@id/likeCount"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
     <TextView
-        android:id="@+id/reposted"
+        android:id="@+id/repostCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_spacing"
@@ -116,28 +127,27 @@
         app:layout_constraintStart_toEndOf="@id/repost"
         app:layout_constraintTop_toTopOf="@id/repost"
         app:layout_constraintBottom_toBottomOf="@id/repost"
-
-        tools:text="@sample/posts.json/data/reposted"  />
+        tools:text="@sample/posts.json/data/repostCount" />
 
     <ImageView
         android:id="@+id/visit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/common_spacing"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/visited"
+        app:layout_constraintTop_toTopOf="@id/repostCount"
+        app:layout_constraintBottom_toBottomOf="@id/repostCount"
+        app:layout_constraintEnd_toStartOf="@id/visitCount"
         app:srcCompat="@drawable/ic_baseline_visibility_24"
         android:contentDescription="@string/description_visit_image" />
 
     <TextView
-        android:id="@+id/visited"
+        android:id="@+id/visitCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/description_visit_count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/visit"
         app:layout_constraintBottom_toBottomOf="@id/visit"
-        tools:text="@sample/posts.json/data/visited"
-/>
+        tools:text="@sample/posts.json/data/visitCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
