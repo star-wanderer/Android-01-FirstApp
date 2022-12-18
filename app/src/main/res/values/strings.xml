@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">nmedia</string>
     <string name="n_media">NMedia!</string>
+    <string name="hello">Hello!</string>
+    <string name="avatar_description">Avatar Description</string>
+    <string name="description_post_menu">Description Post Menu</string>
+    <string name="description_favourite">Favourite Image</string>
+    <string name="description_favourite_count">Description of favourites count</string>
+    <string name="description_repost">Description of repost image</string>
+    <string name="description_repost_count">Description of repost count</string>
+    <string name="description_visit_image">Description of Visit Image</string>
+    <string name="description_visit_count">Description of Visit Count</string>
 </resources>
