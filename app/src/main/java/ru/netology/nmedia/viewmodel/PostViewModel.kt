@@ -1,4 +1,4 @@
-package ru.netology.nmedia.presentation
+package ru.netology.nmedia.viewmodel
 
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.repository.*
