@@ -3,6 +3,8 @@
     <string name="app_name">нмедиа</string>
     <string name="n_media">НМедиа</string>
     <string name="hello">Привет!</string>
+    <string name="remove">Удалить</string>
+    <string name="post_text">Введите текст</string>
     <string name="avatar_description">Описание Аватара</string>
     <string name="description_post_menu">Описание Меню Поста</string>
     <string name="description_favourite">Описание Изображения Понравившегося</string>
@@ -11,4 +13,9 @@
     <string name="description_share">Описание Изображения Повторной Публикации</string>
     <string name="description_visit_count">Описание Счетчика Посещений</string>
     <string name="description_visit_image">Описание Изображения Посещений</string>
+    <string name="description_save_button">Описание Кнопка Сохранить</string>
+    <string name="edit">Редактировать</string>
+    <string name="description_cancel_save_button">Описание Отмена Кнопка Сохранить</string>
+    <string name="cancel_edit_header">Нажмите для отмены</string>
+    <string name="description_cancel_button">Описание Омена Кнопка Редактировния</string>
 </resources>
