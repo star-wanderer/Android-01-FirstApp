@@ -15,24 +15,21 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/toolsTop"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_post"
-        />
+        tools:listitem="@layout/card_post"/>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/toolsTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="content,save"
-        />
+        app:constraint_referenced_ids="content,save"/>
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="edit_header,cancel"
-        />
+        app:constraint_referenced_ids="edit_header,cancel"/>
 
     <TextView
         android:id="@+id/edit_header"
@@ -43,8 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolsTop"
         app:layout_constraintBottom_toTopOf="@id/content"
         app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageButton
         android:id="@+id/cancel"
@@ -56,8 +52,7 @@
         app:layout_constraintBottom_toBottomOf="@id/edit_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/edit_header"
-        app:srcCompat="@drawable/ic_edit_cancel_48dp"
-        />
+        app:srcCompat="@drawable/ic_edit_cancel_48dp"/>
 
     <EditText
         android:id="@+id/content"
@@ -71,8 +66,7 @@
         app:layout_constraintTop_toBottomOf="@id/edit_header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/save"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageButton
         android:id="@+id/save"
@@ -84,8 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_edit_save_48dp"
-        />
+        app:srcCompat="@drawable/ic_edit_save_48dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

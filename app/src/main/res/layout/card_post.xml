@@ -46,6 +46,7 @@
         app:layout_constraintStart_toEndOf="@id/avatar"
         tools:text="@sample/posts.json/data/published" />
 
+<!-- view was replaced with button view for home work 08_material. see below
     <ImageButton
         android:id="@+id/menu"
         android:layout_width="48dp"
@@ -55,6 +56,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_more_vert_24" />
+ -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu"
+        android:layout_width="@dimen/posts_menu_size"
+        android:layout_height="@dimen/posts_menu_size"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_post_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:icon="@drawable/ic_more_vert_24"
+        style="@style/Widget.AppTheme.IconButton"
+        />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -85,7 +99,7 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="71dp" />
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,7 +107,32 @@
         android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24" /-->
+
+    <!--com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/like"
+        android:contentDescription="@string/description_favourite"
+        android:layout_marginTop="@dimen/common_spacing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:button="@drawable/ic_like_24dp"
+        style="@style/Widget.AppTheme.LikeCheckBox"
+        /-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/like"
+        android:contentDescription="@string/description_favourite"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:checkable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:icon="@drawable/ic_like_24dp"
+        style="@style/Widget.AppTheme.LikeButton"
+        />
 
     <TextView
         android:id="@+id/likeCount"
@@ -104,9 +143,12 @@
         app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toTopOf="@id/like"
         app:layout_constraintBottom_toBottomOf="@id/like"
-        tools:text="@sample/posts.json/data/likeCount" />
+        tools:text="@sample/posts.json/data/likeCount"
+        />
 
-    <ImageView
+    <!-- Block Start:  ImageView and TextView were replaced with Button-->
+
+    <!--ImageView
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -115,9 +157,9 @@
         app:layout_constraintStart_toEndOf="@id/likeCount"
         app:layout_constraintTop_toTopOf="@id/likeCount"
         app:layout_constraintBottom_toBottomOf="@id/likeCount"
-        app:srcCompat="@drawable/ic_baseline_share_24" />
+        app:srcCompat="@drawable/ic_baseline_share_24" /-->
 
-    <TextView
+    <!--TextView
         android:id="@+id/shareCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -126,15 +168,29 @@
         app:layout_constraintStart_toEndOf="@id/share"
         app:layout_constraintTop_toTopOf="@id/share"
         app:layout_constraintBottom_toBottomOf="@id/share"
-        tools:text="@sample/posts.json/data/shareCount" />
+        tools:text="@sample/posts.json/data/shareCount" /-->
+
+    <!-- Block End:  ImageView and TextView were replaced with Button below -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/share"
+        android:contentDescription="@string/description_share"
+        android:layout_marginTop="@dimen/common_spacing"
+        app:layout_constraintStart_toEndOf="@id/likeCount"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:icon="@drawable/ic_baseline_share_24"
+        style="@style/Widget.AppTheme.IconTextButton"
+        />
 
     <ImageView
         android:id="@+id/visit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/common_spacing"
-        app:layout_constraintTop_toTopOf="@id/shareCount"
-        app:layout_constraintBottom_toBottomOf="@id/shareCount"
+        app:layout_constraintTop_toTopOf="@id/share"
+        app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintEnd_toStartOf="@id/visitCount"
         app:srcCompat="@drawable/ic_baseline_visibility_24"
         android:contentDescription="@string/description_visit_image" />
