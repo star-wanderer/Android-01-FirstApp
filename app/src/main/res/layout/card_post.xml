@@ -46,7 +46,8 @@
         app:layout_constraintStart_toEndOf="@id/avatar"
         tools:text="@sample/posts.json/data/published" />
 
-<!-- view was replaced with button view for home work 08_material. see below
+<!-- Start: ImageButton view was replaced with button view for home work 08_material.
+
     <ImageButton
         android:id="@+id/menu"
         android:layout_width="48dp"
@@ -56,7 +57,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_more_vert_24" />
- -->
+
+ End: ImageButton view was replaced with MaterialButton view for home work 08_material.-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
@@ -99,7 +101,9 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="71dp" />
 
-    <!--ImageView
+<!-- Start: ImageView was first replaced with checkbox for home work 08_material.
+
+    <ImageView
         android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,9 +111,10 @@
         android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24" /-->
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        />
 
-    <!--com.google.android.material.checkbox.MaterialCheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/like"
         android:contentDescription="@string/description_favourite"
         android:layout_marginTop="@dimen/common_spacing"
@@ -119,7 +124,11 @@
         android:layout_width="wrap_content"
         android:button="@drawable/ic_like_24dp"
         style="@style/Widget.AppTheme.LikeCheckBox"
-        /-->
+        />
+
+End: ImageView was first replaced with checkbox for home work 08_material. -->
+
+<!--Start: Checkbox was replaced with Material button view for home work 08_material.
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
@@ -146,43 +155,60 @@
         tools:text="@sample/posts.json/data/likeCount"
         />
 
-    <!-- Block Start:  ImageView and TextView were replaced with Button-->
+End: Checkbox was replaced with Material button view for home work 08_material. -->
 
-    <!--ImageView
-        android:id="@+id/share"
-        android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/like"
+        android:contentDescription="@string/description_favourite"
+        android:layout_marginTop="@dimen/common_spacing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        android:checkable="true"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:contentDescription="@string/description_share"
-        app:layout_constraintStart_toEndOf="@id/likeCount"
-        app:layout_constraintTop_toTopOf="@id/likeCount"
-        app:layout_constraintBottom_toBottomOf="@id/likeCount"
-        app:srcCompat="@drawable/ic_baseline_share_24" /-->
-
-    <!--TextView
-        android:id="@+id/shareCount"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:contentDescription="@string/description_share_count"
-        app:layout_constraintStart_toEndOf="@id/share"
-        app:layout_constraintTop_toTopOf="@id/share"
-        app:layout_constraintBottom_toBottomOf="@id/share"
-        tools:text="@sample/posts.json/data/shareCount" /-->
+        app:icon="@drawable/ic_like_24dp"
+        style="@style/Widget.AppTheme.LikeIconTextButton"
+        />
 
-    <!-- Block End:  ImageView and TextView were replaced with Button below -->
+<!-- Start: ImageView view was replaced with MaterialButton view for home work 08_material.
+
+       <ImageView
+           android:id="@+id/share"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="@dimen/common_spacing"
+           android:contentDescription="@string/description_share"
+           app:layout_constraintStart_toEndOf="@id/likeCount"
+           app:layout_constraintTop_toTopOf="@id/likeCount"
+           app:layout_constraintBottom_toBottomOf="@id/likeCount"
+           app:srcCompat="@drawable/ic_baseline_share_24"
+
+       <TextView
+           android:id="@+id/shareCount"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="@dimen/common_spacing"
+           android:contentDescription="@string/description_share_count"
+           app:layout_constraintStart_toEndOf="@id/share"
+           app:layout_constraintTop_toTopOf="@id/share"
+           app:layout_constraintBottom_toBottomOf="@id/share"
+           tools:text="@sample/posts.json/data/shareCount"
+
+ End: Imageview view was replaced with MaterialButton view for home work 08_material. -->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
         android:contentDescription="@string/description_share"
         android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintStart_toEndOf="@id/likeCount"
+        app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:icon="@drawable/ic_baseline_share_24"
         style="@style/Widget.AppTheme.IconTextButton"
         />
+
+<!-- Start: ImageView view was replaced with MaterialButton view for home work 08_material.
 
     <ImageView
         android:id="@+id/visit"
@@ -204,5 +230,20 @@
         app:layout_constraintTop_toTopOf="@id/visit"
         app:layout_constraintBottom_toBottomOf="@id/visit"
         tools:text="@sample/posts.json/data/visitCount" />
+
+End: ImageView view was replaced with MaterialButton view for home work 08_material. -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/visit"
+        android:contentDescription="@string/description_visit_image"
+        android:layout_marginTop="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/common_spacing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_visibility_24"
+        style="@style/Widget.AppTheme.IconTextButton"
+ />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

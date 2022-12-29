@@ -38,15 +38,15 @@ class PostViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
         fun bind (post: Post){
             binding.apply {
-                likeCount.text = CountView.convert(post.likeCount)
+                like.text = CountView.convert(post.likeCount)
                 share.text = CountView.convert(post.shareCount)
-                visitCount.text = CountView.convert(post.visitCount)
+                visit.text = CountView.convert(post.visitCount)
                 author.text = post.author
                 published.text = post.published
                 content.text = post.content
                 like.setOnClickListener {
                     like.isChecked = post.likedByMe
-//                    since like is now of type button.MaterialButton, method setImageResource is not applicable
+//                    since like is now of type button.MaterialButton, method setImageResource() is not applicable
 //                    setImageResource(
 //                        if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
 //                    )

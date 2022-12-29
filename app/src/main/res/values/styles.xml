@@ -6,24 +6,21 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <!-- Checkbox based Like view -->
-    <style name="Widget.AppTheme.LikeCheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
-        <item name="buttonTint">@color/like_checkbox_tint</item>
-    </style>
-    <!-- Button based Like view -->
-    <style name="Widget.AppTheme.LikeButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+    <!-- Button based Icon Text view -->
+    <style name="Widget.AppTheme.LikeIconTextButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="iconTint">@color/like_checkbox_tint</item>
+        <item name="android:textColor">@color/icon_button_tint</item>
         <item name="android:minWidth">@dimen/icon_button_min_size</item>
         <item name="android:minHeight">@dimen/icon_button_min_size</item>
     </style>
-    <!-- Button based Share view -->
+    <!-- Button based Icon Text view -->
     <style name="Widget.AppTheme.IconTextButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="iconTint">@color/icon_button_tint</item>
         <item name="android:textColor">@color/icon_button_tint</item>
         <item name="android:minWidth">@dimen/icon_button_min_size</item>
         <item name="android:minHeight">@dimen/icon_button_min_size</item>
     </style>
-    <!-- Button based Menu view -->
+    <!-- Button based Icon view -->
     <style name="Widget.AppTheme.IconButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="iconTint">@color/icon_button_tint</item>
         <item name="android:minWidth">@dimen/icon_button_min_size</item>
