@@ -1,12 +1,13 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import ru.netology.nmedia.CountView
+import ru.netology.nmedia.presenter.CountView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
@@ -16,6 +17,8 @@ interface OnInteractionListener {
     fun onShare (post: Post) {}
     fun onRemove (post: Post) {}
     fun onEdit (post: Post) {}
+    fun onVideo (post: Post) {}
+    fun onVideoControl (post: Post) {}
 }
 
 class PostsAdapter (
@@ -44,12 +47,21 @@ class PostViewHolder(
                 author.text = post.author
                 published.text = post.published
                 content.text = post.content
+
+                if (post.videoLink.isNullOrBlank()) {
+                    binding.group.visibility = View.GONE
+                } else binding.group.visibility = View.VISIBLE
+
+                video.setOnClickListener {
+                    onInteractionListener.onVideo(post)
+                }
+
+                videoControl.setOnClickListener {
+                    onInteractionListener.onVideoControl(post)
+                }
+
                 like.setOnClickListener {
                     like.isChecked = post.likedByMe
-//                    since like is now of type button.MaterialButton, method setImageResource() is not applicable
-//                    setImageResource(
-//                        if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-//                    )
                     onInteractionListener.onLike(post)
                 }
                 share.setOnClickListener {
@@ -66,7 +78,6 @@ class PostViewHolder(
                                     true
                                 }
                                 R.id.edit -> {
-
                                     onInteractionListener.onEdit(post)
                                     true
                                 }

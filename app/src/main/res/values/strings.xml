@@ -17,4 +17,12 @@
     <string name="description_visit_image">Description of Visit Image</string>
     <string name="description_visit_count">Description of Visit Count</string>
     <string name="description_cancel_button">Description Cancel Edit Button</string>
+    <string name="chooser_share_post">Chooser Share Post</string>
+    <string name="error_empty_content" translatable="false">Error Empty Content</string>
+    <string name="empty" translatable="false">Empty</string>
+    <string name="description_add_new_post">Description Add New Post</string>
+    <string name="fab_content_desc">Create New Post</string>
+    <string name="description_video_background">Video Background Button</string>
+    <string name="description_video_control">Description Video Control</string>
+    <string name="chooser_play_link">Chooser Play Link</string>
 </resources>

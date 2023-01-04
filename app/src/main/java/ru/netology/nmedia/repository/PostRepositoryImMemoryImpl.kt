@@ -14,7 +14,8 @@ class PostRepositoryImMemoryImpl: PostRepository{
             likedByMe = false,
             likeCount = 999_999,
             shareCount = 600,
-            visitCount = 0
+            visitCount = 0,
+            videoLink = "https://www.youtube.com"
         ),
         Post(
             id = nextId++,
@@ -34,7 +35,8 @@ class PostRepositoryImMemoryImpl: PostRepository{
             likedByMe = false,
             likeCount = 999_999,
             shareCount = 400,
-            visitCount = 0
+            visitCount = 0,
+            videoLink = "https://www.youtube.com"
         )
     )
 
@@ -75,7 +77,7 @@ class PostRepositoryImMemoryImpl: PostRepository{
             return
         }
         posts = posts.map{
-            if (it.id != post.id) it else it.copy(content = post.content)
+            if (it.id != post.id) it else it.copy(content = post.content, videoLink = post.videoLink)
         }
         data.value = posts
     }

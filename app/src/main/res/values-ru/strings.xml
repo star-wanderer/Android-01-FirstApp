@@ -18,4 +18,6 @@
     <string name="description_cancel_save_button">Описание Отмена Кнопка Сохранить</string>
     <string name="cancel_edit_header">Нажмите для отмены</string>
     <string name="description_cancel_button">Описание Омена Кнопка Редактировния</string>
+    <string name="chooser_share_post">Чузер Шейер Пост</string>
+    <string name="description_add_new_post" >Описание Добавить Новый Пост</string>
 </resources>
