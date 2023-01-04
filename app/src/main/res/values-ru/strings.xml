@@ -20,4 +20,8 @@
     <string name="description_cancel_button">Описание Омена Кнопка Редактировния</string>
     <string name="chooser_share_post">Чузер Шейер Пост</string>
     <string name="description_add_new_post" >Описание Добавить Новый Пост</string>
+    <string name="fab_content_desc">Создать Новый Пост</string>
+    <string name="description_video_background">Видео Фоновая Кнопка</string>
+    <string name="description_video_control">Элемент Управляния Видео</string>
+    <string name="chooser_play_link">Ссылка Выбора Проигрывателя</string>
 </resources>
