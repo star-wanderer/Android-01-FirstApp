@@ -19,6 +19,7 @@ interface OnInteractionListener {
     fun onEdit (post: Post) {}
     fun onVideo (post: Post) {}
     fun onVideoControl (post: Post) {}
+    fun onPostContent (post: Post) {}
 }
 
 class PostsAdapter (
@@ -51,6 +52,10 @@ class PostViewHolder(
                 if (post.videoLink.isNullOrBlank()) {
                     binding.group.visibility = View.GONE
                 } else binding.group.visibility = View.VISIBLE
+
+                content.setOnClickListener {
+                    onInteractionListener.onPostContent(post)
+                }
 
                 video.setOnClickListener {
                     onInteractionListener.onVideo(post)

@@ -16,8 +16,8 @@ private val empty = Post(
 )
 
 class PostViewModel(application : Application) : AndroidViewModel(application) {
-    //private val repository: PostRepository = PostRepositoryImMemoryImpl()
-    private val repository: PostRepository = PostRepositoryFileImpl(application)
+    private val repository: PostRepository = PostRepositoryImMemoryImpl()
+    //private val repository: PostRepository = PostRepositoryFileImpl(application)
     val data = repository.get()
     private val edited = MutableLiveData(empty)
     fun likeById(id: Long) = repository.likeById(id)
@@ -38,9 +38,6 @@ class PostViewModel(application : Application) : AndroidViewModel(application) {
     fun changeContent(content: String){
         edited.value?.let {
             var text = content.trim()
-//            if (it.content == text){
-//                return
-//            }
             var link : String? = null
             if (text.substringBefore("\n").contains("https://www.youtube.com")) {
                 link = text.substringBefore("\n")
@@ -50,4 +47,3 @@ class PostViewModel(application : Application) : AndroidViewModel(application) {
         }
     }
 }
-

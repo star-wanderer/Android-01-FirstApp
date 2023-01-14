@@ -6,16 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".activity.EditPostActivity">
+    tools:context=".activity.EditPostFragment">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:background="@android:color/transparent"
-        android:autofillHints="Enter New Message Text Here" />
+        android:autofillHints="Enter New Message Text Here"
+        />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"

@@ -1,11 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.android.extensions'
 }
 
 android {
     namespace 'ru.netology.nmedia'
     compileSdk 33
+
+    androidExtensions {
+        experimental = true
+    }
 
     defaultConfig {
         applicationId "ru.netology.nmedia"
@@ -45,6 +50,8 @@ dependencies {
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
 
+    // Navigation component
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     // GSON
     implementation "com.google.code.gson:gson:$gson_version"
     // Activity & Fragment
