@@ -33,6 +33,7 @@ class PostsAdapter (
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
         holder.bind(post)
+
     }
 }
 
@@ -42,6 +43,7 @@ class PostViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
         fun bind (post: Post){
             binding.apply {
+                like.isChecked = post.likedByMe
                 like.text = CountView.convert(post.likeCount)
                 share.text = CountView.convert(post.shareCount)
                 visit.text = CountView.convert(post.visitCount)

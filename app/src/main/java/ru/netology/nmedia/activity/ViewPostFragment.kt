@@ -32,6 +32,8 @@ class ViewPostFragment : Fragment() {
         var Bundle.ARG_POST9: String? by StringArg
     }
 
+    private lateinit var binding : FragmentViewPostBinding
+
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
@@ -42,7 +44,7 @@ class ViewPostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentViewPostBinding.inflate(
+        binding = FragmentViewPostBinding.inflate(
             inflater,
             container,
             false
@@ -62,17 +64,7 @@ class ViewPostFragment : Fragment() {
                 videoLink = args.ARG_POST9.toString()
             )
 
-            with(binding) {
-                like.text = CountView.convert(post.likeCount)
-                share.text = CountView.convert(post.shareCount)
-                visit.text = CountView.convert(post.visitCount)
-                author.text = post.author
-                content.text = post.content
-                published.text = post.published
-
-                if (post.videoLink.isNullOrBlank()) {
-                    binding.group.visibility = View.GONE
-                } else binding.group.visibility = View.VISIBLE
+            with(binding){
 
                 video.setOnClickListener{
                     val intent = Intent().apply {
@@ -91,15 +83,15 @@ class ViewPostFragment : Fragment() {
                 }
 
                 like.setOnClickListener {
-                    like.isChecked = args.ARG_POST2.toBoolean()
-                    args.ARG_POST1?.let { it1 -> viewModel.likeById(it1.toLong()) }
+                    like.isChecked = post.likedByMe
+                    post.id.let { viewModel.likeById(it) }
                 }
 
                 share.setOnClickListener {
-                    args.ARG_POST1?.let { id -> viewModel.shareById(id.toLong()) }
+                    post.id.let { id -> viewModel.shareById(id) }
                     val intent = Intent().apply {
                         action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, args.ARG_POST5)
+                        putExtra(Intent.EXTRA_TEXT, post.content)
                         type = "text/plain"
                     }
                     val shareIntent =
@@ -113,7 +105,7 @@ class ViewPostFragment : Fragment() {
                         setOnMenuItemClickListener { item ->
                             when (item.itemId) {
                                 R.id.remove -> {
-                                    args.ARG_POST1?.let { id -> viewModel.removeById(id.toLong()) }
+                                    post.id.let { id -> viewModel.removeById(id) }
                                     findNavController().navigateUp()
                                 }
                                 R.id.edit -> {
@@ -133,12 +125,28 @@ class ViewPostFragment : Fragment() {
                 }
             }
 
-//            What to pass to subscribe to single post data updates?
-//            viewModel.data.observe(viewLifecycleOwner){
-//                ??????
-//            }
+            viewModel.data.observe(viewLifecycleOwner){ updatedPosts ->
+                updateView(updatedPosts.last { it.id == post.id })
+            }
         }
         return binding.root
 
+    }
+
+    private fun updateView(post: Post) {
+
+        with(binding) {
+            like.text = CountView.convert(post.likeCount)
+            share.text = CountView.convert(post.shareCount)
+            visit.text = CountView.convert(post.visitCount)
+            author.text = post.author
+            content.text = post.content
+            published.text = post.published
+            like.isChecked = post.likedByMe
+
+            if (post.videoLink.isNullOrBlank()) {
+                binding.group.visibility = View.GONE
+            } else binding.group.visibility = View.VISIBLE
+        }
     }
 }
