@@ -21,18 +21,12 @@ import ru.netology.nmedia.viewmodel.PostViewModel
 class ViewPostFragment : Fragment() {
 
     companion object {
-        var Bundle.ARG_POST1: String? by StringArg
-        var Bundle.ARG_POST2: String? by StringArg
-        var Bundle.ARG_POST3: String? by StringArg
-        var Bundle.ARG_POST4: String? by StringArg
-        var Bundle.ARG_POST5: String? by StringArg
-        var Bundle.ARG_POST6: String? by StringArg
-        var Bundle.ARG_POST7: String? by StringArg
-        var Bundle.ARG_POST8: String? by StringArg
-        var Bundle.ARG_POST9: String? by StringArg
+        var Bundle.ARG_POST_ID: String? by StringArg
     }
 
     private lateinit var binding : FragmentViewPostBinding
+
+    private lateinit var myPost : Post
 
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
@@ -52,24 +46,14 @@ class ViewPostFragment : Fragment() {
 
         arguments?.let { args ->
 
-            val post = Post (
-                id = args.ARG_POST1.toString().toLong(),
-                likedByMe = args.ARG_POST2.toString().toBoolean(),
-                likeCount = args.ARG_POST3.toString().toLong(),
-                shareCount = args.ARG_POST4.toString().toLong(),
-                content = args.ARG_POST5.toString(),
-                visitCount = args.ARG_POST6.toString().toLong(),
-                author = args.ARG_POST7.toString(),
-                published = args.ARG_POST8.toString(),
-                videoLink = args.ARG_POST9.toString()
-            )
+            val postId = args.ARG_POST_ID.toString().toLong()
 
             with(binding){
 
                 video.setOnClickListener{
                     val intent = Intent().apply {
                         action = Intent.ACTION_VIEW
-                        data = Uri.parse(post.videoLink)
+                        data = Uri.parse(myPost.videoLink)
                     }
                     startActivity(intent)
                 }
@@ -77,21 +61,21 @@ class ViewPostFragment : Fragment() {
                 videoControl.setOnClickListener{
                     val intent = Intent().apply {
                         action = Intent.ACTION_VIEW
-                        data = Uri.parse(post.videoLink)
+                        data = Uri.parse(myPost.videoLink)
                     }
                     startActivity(intent)
                 }
 
                 like.setOnClickListener {
-                    like.isChecked = post.likedByMe
-                    post.id.let { viewModel.likeById(it) }
+                    like.isChecked = myPost.likedByMe
+                    myPost.id.let { viewModel.likeById(it) }
                 }
 
                 share.setOnClickListener {
-                    post.id.let { id -> viewModel.shareById(id) }
+                    myPost.id.let { id -> viewModel.shareById(id) }
                     val intent = Intent().apply {
                         action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, post.content)
+                        putExtra(Intent.EXTRA_TEXT, myPost.content)
                         type = "text/plain"
                     }
                     val shareIntent =
@@ -105,16 +89,16 @@ class ViewPostFragment : Fragment() {
                         setOnMenuItemClickListener { item ->
                             when (item.itemId) {
                                 R.id.remove -> {
-                                    post.id.let { id -> viewModel.removeById(id) }
+                                    postId.let { id -> viewModel.removeById(id) }
                                     findNavController().navigateUp()
                                 }
                                 R.id.edit -> {
-                                    viewModel.edit(post)
+                                    viewModel.edit(myPost)
                                     findNavController().navigate(
                                         R.id.action_viewPostFragment_to_editPostFragment,
                                         Bundle().apply {
-                                            textArg = if (post.videoLink.isNullOrBlank()) post.content
-                                            else post.videoLink + "\n" + post.content
+                                            textArg = if (myPost.videoLink.isNullOrBlank()) myPost.content
+                                            else myPost.videoLink + "\n" + myPost.content
                                         })
                                     true
                                 }
@@ -126,7 +110,7 @@ class ViewPostFragment : Fragment() {
             }
 
             viewModel.data.observe(viewLifecycleOwner){ updatedPosts ->
-                updateView(updatedPosts.last { it.id == post.id })
+                updatedPosts.lastOrNull() { it.id == postId }?.let { updateView(it) }
             }
         }
         return binding.root
@@ -134,6 +118,8 @@ class ViewPostFragment : Fragment() {
     }
 
     private fun updateView(post: Post) {
+
+        myPost = post
 
         with(binding) {
             like.text = CountView.convert(post.likeCount)

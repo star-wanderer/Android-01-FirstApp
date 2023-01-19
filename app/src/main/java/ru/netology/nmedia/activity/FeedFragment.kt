@@ -11,15 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.EditPostFragment.Companion.textArg
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST1
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST2
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST3
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST4
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST5
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST6
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST7
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST8
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST9
+import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST_ID
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
@@ -49,15 +41,7 @@ class FeedFragment : Fragment() {
                 findNavController().navigate(
                     R.id.action_feedFragment_to_viewPostFragment,
                     Bundle().apply {
-                        ARG_POST1 = post.id.toString()
-                        ARG_POST2 = post.likedByMe.toString()
-                        ARG_POST3 = post.likeCount.toString()
-                        ARG_POST4 = post.shareCount.toString()
-                        ARG_POST5 = post.content
-                        ARG_POST6 = post.visitCount.toString()
-                        ARG_POST7 = post.author
-                        ARG_POST8 = post.published
-                        ARG_POST9 = post.videoLink
+                        ARG_POST_ID = post.id.toString()
                     }
                 )
             }
