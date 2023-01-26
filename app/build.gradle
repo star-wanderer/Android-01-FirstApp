@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.android.extensions'
+    id 'org.jetbrains.kotlin.kapt'
+
 }
 
 android {
@@ -41,6 +43,7 @@ android {
 
 dependencies {
 
+    def room_ver = "2.5.0"
     def arch_version = "2.1.0"
     def lifecycle_version = "2.5.1"
     def navigation_version = "2.5.3"
@@ -50,6 +53,9 @@ dependencies {
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
 
+    //Room
+    implementation "androidx.room:room-runtime:$room_ver"
+    kapt "androidx.room:room-compiler:$room_ver"
     // Navigation component
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     // GSON
@@ -70,10 +76,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     // other
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
