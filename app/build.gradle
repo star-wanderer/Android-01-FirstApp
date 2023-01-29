@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.android.extensions'
     id 'org.jetbrains.kotlin.kapt'
-
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -43,6 +43,8 @@ android {
 
 dependencies {
 
+    def play_services_base_version = "18.1.0"
+    def firebase_bom ="31.2.0"
     def room_ver = "2.5.0"
     def arch_version = "2.1.0"
     def lifecycle_version = "2.5.1"
@@ -53,6 +55,11 @@ dependencies {
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
 
+    // Allow GoogleAPI Availability functionality
+    implementation "com.google.android.gms:play-services-base:$play_services_base_version"
+    // Import the Firebase BoM
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom")
+    implementation "com.google.firebase:firebase-messaging-ktx"
     //Room
     implementation "androidx.room:room-runtime:$room_ver"
     kapt "androidx.room:room-compiler:$room_ver"
