@@ -25,4 +25,10 @@
     <string name="description_video_background">Video Background Button</string>
     <string name="description_video_control">Description Video Control</string>
     <string name="chooser_play_link">Chooser Play Link</string>
+    <string name="channel_remote_name">Channel Remote Name</string>
+    <string name="channel_remote_description">Channel Remote Description</string>
+    <string name="notification_user_liked">User %1$s liked post of user %2$s</string>
+    <string name="notification_system_not_supported">System: action not supported</string>
+    <string name="notification_upgrade_recommended">Upgrade to newer version is recommended</string>
+    <string name="notification_new_post">%1$s published new post:</string>
 </resources>

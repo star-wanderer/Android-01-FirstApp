@@ -24,4 +24,10 @@
     <string name="description_video_background">Видео Фоновая Кнопка</string>
     <string name="description_video_control">Элемент Управляния Видео</string>
     <string name="chooser_play_link">Ссылка Выбора Проигрывателя</string>
+    <string name="channel_remote_name">Имя Удаленного Канала</string>
+    <string name="channel_remote_description">Описание Удаленного Канала</string>
+    <string name="notification_user_liked">Пользователь %1$s в восторге от поста %2$s</string>
+    <string name="notification_system_not_supported">Система: действие не поддерживается</string>
+    <string name="notification_upgrade_recommended">Обновите приложение до новой версии</string>
+    <string name="notification_new_post">%1$s опубликовал новый пост:</string>
 </resources>
