@@ -31,4 +31,7 @@
     <string name="notification_system_not_supported">System: action not supported</string>
     <string name="notification_upgrade_recommended">Upgrade to newer version is recommended</string>
     <string name="notification_new_post">%1$s published new post:</string>
+    <string name="retry_loading">Retry Loading</string>
+    <string name="empty_posts">empty Posts</string>
+    <string name="error_loading">Error Loading</string>
 </resources>

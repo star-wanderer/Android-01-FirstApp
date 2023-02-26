@@ -44,7 +44,7 @@ class PostViewHolder(
         fun bind (post: Post){
             binding.apply {
                 like.isChecked = post.likedByMe
-                like.text = CountView.convert(post.likeCount)
+                like.text = CountView.convert(post.likes)
                 share.text = CountView.convert(post.shareCount)
                 visit.text = CountView.convert(post.visitCount)
                 author.text = post.author

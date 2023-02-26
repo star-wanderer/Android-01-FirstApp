@@ -110,7 +110,7 @@ class ViewPostFragment : Fragment() {
             }
 
             viewModel.data.observe(viewLifecycleOwner){ updatedPosts ->
-                updatedPosts.lastOrNull() { it.id == postId }?.let { updateView(it) }
+                updatedPosts.posts.lastOrNull { it.id == postId }?.let { updateView(it) }
             }
         }
         return binding.root
@@ -122,7 +122,7 @@ class ViewPostFragment : Fragment() {
         myPost = post
 
         with(binding) {
-            like.text = CountView.convert(post.likeCount)
+            like.text = CountView.convert(post.likes)
             share.text = CountView.convert(post.shareCount)
             visit.text = CountView.convert(post.visitCount)
             author.text = post.author
