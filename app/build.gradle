@@ -47,6 +47,7 @@ android {
 
 dependencies {
 
+    def swipe_version  = "1.1.0"
     def okhttp_version = "4.10.0"
     def play_services_base_version = "18.2.0"
     def firebase_bom ="31.2.0"
@@ -60,6 +61,8 @@ dependencies {
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
 
+    // SwipeRefreshLayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_version"
     // Okhttp
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     // Allow GoogleAPI Availability functionality
