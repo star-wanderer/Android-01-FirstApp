@@ -15,11 +15,10 @@ class PostRepositoryImpl: PostRepository {
         .build()
     private val gson = Gson()
     private val typeToken = object : TypeToken<List<Post>>() {}
-    private val typeToken2 = object : TypeToken<Post>() {}
 
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:9999"
-        private val jsonType = "application/json".toMediaType()
+            private const val BASE_URL = "http://10.0.2.2:9999"
+            private val jsonType = "application/json".toMediaType()
     }
 
     override fun getAll(): List<Post> {
@@ -35,36 +34,25 @@ class PostRepositoryImpl: PostRepository {
             }
     }
 
-    private fun getById(id: Long) : Post {
-        val request: Request = Request.Builder()
-            .url("${BASE_URL}/api/posts/$id")
-            .build()
+    override fun like(post: Post): Post {
 
-        return client.newCall(request)
-            .execute()
-            .let { it.body?.string() ?: throw RuntimeException("post with id: $id does not exist") }
-            .let {
-                gson.fromJson(it, typeToken2.type)
-            }
-    }
-
-    override fun likeById(id: Long) {
-
-        val post = getById(id)
         val request = if (post.likedByMe){
                 Request.Builder()
                     .delete()
-                    .url("${BASE_URL}/api/posts/$id/likes")
+                    .url("${BASE_URL}/api/posts/${post.id}/likes")
                     .build()
             } else {
                 Request.Builder()
                     .post(gson.toJson(post).toRequestBody(jsonType))
-                    .url("${BASE_URL}/api/posts/$id/likes")
+                    .url("${BASE_URL}/api/posts/${post.id}/likes")
                     .build()
             }
-            client.newCall(request)
-                .execute()
-                .close()
+        return client.newCall(request)
+            .execute()
+            .let { it.body?.string() ?: throw RuntimeException("body is null") }
+            .let {
+                gson.fromJson(it, Post::class.java)
+            }
     }
 
     override fun shareById(id: Long) {

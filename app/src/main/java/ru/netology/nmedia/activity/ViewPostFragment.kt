@@ -68,7 +68,7 @@ class ViewPostFragment : Fragment() {
 
                 like.setOnClickListener {
                     like.isChecked = myPost.likedByMe
-                    myPost.id.let { viewModel.likeById(it) }
+                    myPost.id.let { viewModel.like(myPost) }
                 }
 
                 share.setOnClickListener {
