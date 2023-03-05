@@ -58,7 +58,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         edited.value = empty
-        loadPosts()
     }
 
     fun edit(post: Post) {
