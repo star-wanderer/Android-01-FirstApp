@@ -30,6 +30,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders.usesCleartextTraffic = false
+        }
+        debug {
+            manifestPlaceholders.usesCleartextTraffic = true
         }
     }
     compileOptions {
@@ -43,10 +47,12 @@ android {
 
 dependencies {
 
-    def play_services_base_version = "18.1.0"
+    def swipe_version  = "1.1.0"
+    def okhttp_version = "4.10.0"
+    def play_services_base_version = "18.2.0"
     def firebase_bom ="31.2.0"
     def room_ver = "2.5.0"
-    def arch_version = "2.1.0"
+    def arch_version = "2.2.0"
     def lifecycle_version = "2.5.1"
     def navigation_version = "2.5.3"
     def recyclerview_version = "1.2.1"
@@ -55,6 +61,10 @@ dependencies {
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
 
+    // SwipeRefreshLayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_version"
+    // Okhttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     // Allow GoogleAPI Availability functionality
     implementation "com.google.android.gms:play-services-base:$play_services_base_version"
     // Import the Firebase BoM
@@ -83,8 +93,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     // other
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

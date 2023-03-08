@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.EditPostFragment.Companion.textArg
-import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST_ID
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
-import ru.netology.nmedia.viewmodel.*
+import ru.netology.nmedia.viewmodel.PostViewModel
+import ru.netology.nmedia.activity.EditPostFragment.Companion.textArg
+import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST_ID
 
 class FeedFragment : Fragment() {
 
@@ -34,6 +35,11 @@ class FeedFragment : Fragment() {
             container,
             false
         )
+
+        binding.swipeRefresh.setOnRefreshListener{
+            viewModel.loadPosts()
+            binding.swipeRefresh.isRefreshing = false
+        }
 
         val adapter = PostsAdapter(object: OnInteractionListener {
 
@@ -63,7 +69,7 @@ class FeedFragment : Fragment() {
             }
 
             override fun onLike (post: Post) {
-                viewModel.likeById(post.id)
+                viewModel.like(post)
             }
 
             override fun onRemove(post: Post) {
@@ -93,8 +99,15 @@ class FeedFragment : Fragment() {
         })
 
         binding.list.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner){
-            adapter.submitList(it)
+        viewModel.data.observe(viewLifecycleOwner) { state ->
+            adapter.submitList(state.posts)
+            binding.progress.isVisible = state.loading
+            binding.errorGroup.isVisible = state.error
+            binding.emptyText.isVisible = state.empty
+        }
+
+        binding.retryButton.setOnClickListener {
+            viewModel.loadPosts()
         }
 
         binding.fab.setOnClickListener{
