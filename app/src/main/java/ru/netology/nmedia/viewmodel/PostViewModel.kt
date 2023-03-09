@@ -50,9 +50,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun like(post: Post) {
         repository.likeAsync(post, object: PostRepository.GetAllCallback<Post> {
             override fun onSuccess(data: Post) {
-            _data.postValue(
-                _data.value?.copy(posts = _data.value?.posts.orEmpty()
-                    .map { if (it.id == data.id) data else it }))
+                _data.postValue(
+                    _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                        .map { if (it.id == data.id) data else it }))
             }
             override fun onError(e: Exception) {
                 _data.postValue(FeedModel(error = true))
@@ -81,13 +81,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun removeById(id: Long) {
         val old = _data.value?.posts.orEmpty()
-        _data.postValue(
-            _data.value?.copy(posts = _data.value?.posts.orEmpty()
+        _data.value = _data.value?.copy(posts = _data.value?.posts.orEmpty()
                 .filter { it.id != id }
             )
-        )
         try {
-            _data.postValue(FeedModel(deleting = true))
             repository.removeByIdAsync(id, object: PostRepository.GetAllCallback<Long> {
                 override fun onSuccess(data: Long) {
                     _data.postValue(FeedModel(deleted = true))
@@ -97,12 +94,8 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
                 }
             })
         } catch (e: IOException) {
-            _data.postValue(_data.value?.copy(posts = old))
+            _data.value = _data.value?.copy(posts = old)
         }
-    }
-
-    fun shareById(id: Long) {
-        thread { repository.shareById(id) }
     }
 
     fun changeContent(content: String){
@@ -115,5 +108,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             }
             edited.value = it.copy(content = text, videoLink = link)
         }
+    }
+
+    fun shareById(id: Long) {
+        thread { repository.shareById(id) }
     }
 }
