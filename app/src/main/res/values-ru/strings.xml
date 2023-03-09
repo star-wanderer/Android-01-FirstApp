@@ -31,6 +31,8 @@
     <string name="notification_upgrade_recommended">Обновите приложение до новой версии</string>
     <string name="notification_new_post">%1$s опубликовал новый пост:</string>
     <string name="retry_loading">повтор загрузки</string>
-    <string name="empty_posts">список постов пуст</string>
+    <string name="empty_posts">Посты отсутствуют</string>
     <string name="error_loading">ошибка загрузк</string>
+    <string name="saving_posts">Сохранение...</string>
+
 </resources>
