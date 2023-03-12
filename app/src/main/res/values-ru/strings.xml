@@ -34,5 +34,5 @@
     <string name="empty_posts">Посты отсутствуют</string>
     <string name="error_loading">ошибка загрузк</string>
     <string name="saving_posts">Сохранение...</string>
-
+    <string name="content_image">Изображение поддержки содержимого</string>
 </resources>

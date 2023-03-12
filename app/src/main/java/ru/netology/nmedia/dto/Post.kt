@@ -10,5 +10,13 @@ data class Post (
      val shareCount: Long = 0,
      val visitCount: Long = 0,
      val videoLink: String? = null,
-     val authorAvatar: String = ""
+     val authorAvatar: String = "",
+     val attachment: Attachment? = null
 )
+
+data class Attachment(
+     val url: String ="",
+     val description: String = "",
+     val type: String = "",
+)
+

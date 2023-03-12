@@ -52,7 +52,7 @@ class PostViewHolder(
                 published.text = post.published
                 content.text = post.content
 
-                val url = "http://10.0.2.2:9999/avatars/${post.authorAvatar}"
+                var url = "http://10.0.2.2:9999/avatars/${post.authorAvatar}"
                 Glide.with(binding.avatar)
                     .load(url)
                     .placeholder(R.drawable.ic_baseline_question_mark_48dp)
@@ -60,6 +60,13 @@ class PostViewHolder(
                     .timeout(10_000)
                     .circleCrop()
                     .into(binding.avatar)
+
+                url = "http://10.0.2.2:9999/images/${post.attachment?.url}"
+                Glide.with(binding.image)
+                    .load(url)
+                    .timeout(10_000)
+                    .centerInside()
+                    .into(binding.image)
 
                 if (post.videoLink.isNullOrBlank()) {
                     binding.group.visibility = View.GONE
