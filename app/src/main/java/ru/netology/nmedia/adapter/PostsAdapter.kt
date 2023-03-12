@@ -58,6 +58,7 @@ class PostViewHolder(
                     .placeholder(R.drawable.ic_baseline_question_mark_48dp)
                     .error(R.drawable.ic_baseline_error_48dp)
                     .timeout(10_000)
+                    .circleCrop()
                     .into(binding.avatar)
 
                 if (post.videoLink.isNullOrBlank()) {
