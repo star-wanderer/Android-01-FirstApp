@@ -3,7 +3,9 @@ package ru.netology.nmedia.viewmodel
 import android.app.Application
 import androidx.lifecycle.*
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.error.ErrorCodes
 import ru.netology.nmedia.model.FeedModel
+import ru.netology.nmedia.operation.Operation
 import ru.netology.nmedia.repository.*
 import ru.netology.nmedia.util.SingleLiveEvent
 import java.io.IOException
@@ -31,44 +33,53 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     val postCreated: LiveData<Unit>
         get() = _postCreated
 
+    var lastId: Long = 0
+    var lastPost: Post = empty
+    var lastOperationCode: Operation = Operation.NONE
+
     init {
         loadPosts()
     }
 
     fun loadPosts() {
+        lastOperationCode = Operation.LOAD
         _data.value = FeedModel(loading = true)
         repository.getAllAsync(object: PostRepository.GetAllCallback<List<Post>> {
             override fun onSuccess(data: List<Post>) {
-                _data.postValue(FeedModel(posts = data, empty = data.isEmpty()))
-            }
-            override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+                    _data.postValue(FeedModel(posts = data, empty = data.isEmpty(),issue = false))
+                }
+            override fun onError(e: Exception, errorCode: Int) {
+                _data.postValue(FeedModel(issue = true, issueText = ErrorCodes.getDescription(errorCode)))
             }
         })
     }
 
     fun like(post: Post) {
+        lastPost = post
+        lastOperationCode = Operation.LIKE
         repository.likeAsync(post, object: PostRepository.GetAllCallback<Post> {
             override fun onSuccess(data: Post) {
                 _data.postValue(
-                    _data.value?.copy(posts = _data.value?.posts.orEmpty()
+                    _data.value?.copy(issue = false, posts = _data.value?.posts.orEmpty()
                         .map { if (it.id == data.id) data else it }))
+                loadPosts()
             }
-            override fun onError(e: Exception) {
-                _data.postValue(FeedModel(error = true))
+            override fun onError(e: Exception, errorCode: Int) {
+                _data.postValue(FeedModel(issue = true, issueText = ErrorCodes.getDescription(errorCode)))
             }
         })
     }
 
     fun save() {
+        _postCreated.postValue(Unit)
+        lastOperationCode = Operation.SAVE
         _data.value = FeedModel(saving = true)
         edited.value?.let { post ->
             repository.saveAsync(post, object: PostRepository.GetAllCallback<Post> {
                 override fun onSuccess(data: Post) {
-                    _postCreated.postValue(Unit)
                 }
-                override fun onError(e: Exception) {
-                    _data.postValue(FeedModel(error = true))
+                override fun onError(e: Exception, errorCode: Int) {
+                    _data.postValue(FeedModel(issue = true, issueText = ErrorCodes.getDescription(errorCode)))
                 }
             })
         }
@@ -77,9 +88,12 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun edit(post: Post) {
         edited.value = post
+        lastOperationCode = Operation.EDIT
     }
 
     fun removeById(id: Long) {
+        lastId = id
+        lastOperationCode = Operation.DELETE
         val old = _data.value?.posts.orEmpty()
         _data.value = _data.value?.copy(posts = _data.value?.posts.orEmpty()
                 .filter { it.id != id }
@@ -87,10 +101,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         try {
             repository.removeByIdAsync(id, object: PostRepository.GetAllCallback<Long> {
                 override fun onSuccess(data: Long) {
-                    _data.postValue(FeedModel(deleted = true))
+                    _data.postValue(FeedModel(issue = false, deleted = true))
                 }
-                override fun onError(e: Exception) {
-                    _data.postValue(FeedModel(error = true))
+                override fun onError(e: Exception, errorCode: Int) {
+                    _data.postValue(FeedModel(issue = true, issueText = ErrorCodes.getDescription(errorCode)))
                 }
             })
         } catch (e: IOException) {
@@ -113,4 +127,8 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun shareById(id: Long) {
         thread { repository.shareById(id) }
     }
+
+
 }
+
+

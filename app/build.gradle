@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.android.extensions'
     id 'org.jetbrains.kotlin.kapt'
     id 'com.google.gms.google-services'
 }
@@ -9,10 +8,6 @@ plugins {
 android {
     namespace 'ru.netology.nmedia'
     compileSdk 33
-
-    androidExtensions {
-        experimental = true
-    }
 
     defaultConfig {
         applicationId "ru.netology.nmedia"
@@ -31,9 +26,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders.usesCleartextTraffic = false
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
         }
         debug {
             manifestPlaceholders.usesCleartextTraffic = true
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
         }
     }
     compileOptions {
@@ -45,26 +42,40 @@ android {
     }
 }
 
+
+
 dependencies {
 
+    // Commented because of Retrofit
+    // def okhttp_version = "4.10.0"
     def swipe_version  = "1.1.0"
-    def okhttp_version = "4.10.0"
     def play_services_base_version = "18.2.0"
     def firebase_bom ="31.2.0"
     def room_ver = "2.5.0"
     def arch_version = "2.2.0"
-    def lifecycle_version = "2.5.1"
+    def lifecycle_version = "2.6.0"
     def navigation_version = "2.5.3"
-    def recyclerview_version = "1.2.1"
+    def recyclerview_version = "1.3.0"
     def mdc_version = "1.3.0"
     def fragment_version = "1.5.5"
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
+    def glide_version = "4.14.2"
+    def retrofit_version = "2.9.0"
+    def retrofitgson_version = "2.9.0"
+    def okhttplogging_version = "4.10.0"
 
+    // Logging Interceptor to be used with Retrofit
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttplogging_version"
+    // Retrofit dependencies
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitgson_version"
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
     // SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_version"
-    // Okhttp
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    // Okhttp -> Commented because of Retrofit
+    // implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     // Allow GoogleAPI Availability functionality
     implementation "com.google.android.gms:play-services-base:$play_services_base_version"
     // Import the Firebase BoM
@@ -100,3 +111,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+

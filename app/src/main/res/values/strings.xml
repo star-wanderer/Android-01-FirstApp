@@ -35,4 +35,8 @@
     <string name="empty_posts">Posts are Missing</string>
     <string name="error_loading">Error Loading</string>
     <string name="saving_posts">Saving...</string>
+    <string name="content_image">Content supporting image</string>
+    <string name="retry_last">Retry Again</string>
+    <string name="cancel_last">Cancel</string>
+    <string name="issue_operation">Issue:</string>
 </resources>

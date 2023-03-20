@@ -7,6 +7,7 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.netology.nmedia.presenter.CountView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
@@ -50,6 +51,22 @@ class PostViewHolder(
                 author.text = post.author
                 published.text = post.published
                 content.text = post.content
+
+                var url = "http://10.0.2.2:9999/avatars/${post.authorAvatar}"
+                Glide.with(binding.avatar)
+                    .load(url)
+                    .placeholder(R.drawable.ic_baseline_question_mark_48dp)
+                    .error(R.drawable.ic_baseline_error_48dp)
+                    .timeout(10_000)
+                    .circleCrop()
+                    .into(binding.avatar)
+
+                url = "http://10.0.2.2:9999/images/${post.attachment?.url}"
+                Glide.with(binding.image)
+                    .load(url)
+                    .timeout(10_000)
+                    .centerInside()
+                    .into(binding.image)
 
                 if (post.videoLink.isNullOrBlank()) {
                     binding.group.visibility = View.GONE

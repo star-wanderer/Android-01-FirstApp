@@ -18,6 +18,7 @@ import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 import ru.netology.nmedia.activity.EditPostFragment.Companion.textArg
 import ru.netology.nmedia.activity.ViewPostFragment.Companion.ARG_POST_ID
+import ru.netology.nmedia.operation.Operation
 
 class FeedFragment : Fragment() {
 
@@ -105,9 +106,26 @@ class FeedFragment : Fragment() {
             binding.errorGroup.isVisible = state.error
             binding.emptyText.isVisible = state.empty
             binding.savingPost.isVisible = state.saving
+
+            binding.issueGroup.isVisible = state.issue
+            binding.issueTitle.text = state.issueText
         }
 
         binding.retryButton.setOnClickListener {
+            viewModel.loadPosts()
+        }
+
+        binding.issueButton.setOnClickListener {
+            when (viewModel.lastOperationCode) {
+                Operation.LIKE -> viewModel.like(viewModel.lastPost)
+                Operation.SAVE -> viewModel.save()
+                Operation.EDIT -> viewModel.edit(viewModel.lastPost)
+                Operation.DELETE -> viewModel.removeById(viewModel.lastId)
+                else -> { }
+            }
+        }
+
+        binding.issueCancelButton.setOnClickListener {
             viewModel.loadPosts()
         }
 
