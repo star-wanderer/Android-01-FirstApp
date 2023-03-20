@@ -12,4 +12,6 @@ data class FeedModel(
     val saving: Boolean = false,
     val deleting: Boolean = false,
     val refreshing: Boolean = false,
+    val issue: Boolean = false,
+    val issueText: String = "",
 )

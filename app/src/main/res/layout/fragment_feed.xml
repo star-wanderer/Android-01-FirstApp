@@ -9,6 +9,49 @@
     tools:context=".activity.FeedFragment">
 
     <TextView
+        android:id="@+id/issueTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:text="@string/issue_operation"
+        app:layout_constraintBottom_toTopOf="@+id/issueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <Button
+        android:id="@+id/issueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/retry_last"
+        app:layout_constraintBottom_toTopOf="@id/issueCancelButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/issueTitle"
+        />
+
+    <Button
+        android:id="@+id/issueCancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_last"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/issueButton"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/issueGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="issueButton,issueTitle,issueCancelButton"
+        />
+
+    <TextView
         android:id="@+id/retryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

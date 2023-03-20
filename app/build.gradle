@@ -26,9 +26,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders.usesCleartextTraffic = false
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
         }
         debug {
             manifestPlaceholders.usesCleartextTraffic = true
+            buildConfigField "String", "BASE_URL", '"http://10.0.2.2:9999"'
         }
     }
     compileOptions {
@@ -44,8 +46,9 @@ android {
 
 dependencies {
 
+    // Commented because of Retrofit
+    // def okhttp_version = "4.10.0"
     def swipe_version  = "1.1.0"
-    def okhttp_version = "4.10.0"
     def play_services_base_version = "18.2.0"
     def firebase_bom ="31.2.0"
     def room_ver = "2.5.0"
@@ -58,13 +61,21 @@ dependencies {
     def activity_version = "1.6.1"
     def gson_version = "2.10.1"
     def glide_version = "4.14.2"
+    def retrofit_version = "2.9.0"
+    def retrofitgson_version = "2.9.0"
+    def okhttplogging_version = "4.10.0"
 
+    // Logging Interceptor to be used with Retrofit
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttplogging_version"
+    // Retrofit dependencies
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitgson_version"
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
     // SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_version"
-    // Okhttp
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    // Okhttp -> Commented because of Retrofit
+    // implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     // Allow GoogleAPI Availability functionality
     implementation "com.google.android.gms:play-services-base:$play_services_base_version"
     // Import the Firebase BoM
